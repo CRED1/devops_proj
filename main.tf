@@ -1,14 +1,13 @@
 provider "aws" {
   region  = "${var.aws_region}"
   profile = "${var.aws_profile}"
-  #access_key = "${var.access_key}"
-  #secret_key = "${var.secret_access_key}"
+
 
 }
 #--Key pairs
 resource "aws_key_pair" "deployer" {
   key_name   = "deployer_key"
-  public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC3dKfVG5brtyZ4RL5L7pPdOoA5JpFe3CW41TTomUzX4jyznHm4266o+Ikd+EZdUqHbIvIU5Bw+ch/iTi/gJAzM4h0Bn7ZZIvEfK7G6nox2HPu5sFfNmu5UARXHDr0kvm5eht2TKYnbuRh9RW6eMVPgJXKhefYiIW8TTQHcN1BqetRUphFJZcIXeAhY5a5PPT6Fs9n3RsN5bqJP6D/7b/rzJMG4BZsI/P7clxzkk72pV+lO0VWVu2LoWDwAdQxn4hGCBxFllNRt23ONESxRiMfsVePneau6uVKaSsAhHQ2/7R/4Qh38HyUS/N2TnAvrpA7+lBqVoV75gqo8IIYmwqFiOuqO7pElVrTQjtjaqQh8hlq4wxaWW3rrEDxZCqR7J4W/65gUm9Vk73wDbl/8m0zaELTPV9Rt1XRvvczXW0ctES+zW213H+l+5zTXhjSjC1a+P07QeqbGp1zbjy+HnD8goljSMFL6KKStZdDQIYWYBNpmh8d3SvZFIgUeWUlQRf+YwhTw23+uCHp23oqyh9VKzMcccNgpBCbtXLftnq7tGY5gpXVqmmBF1L2zOagljXbGUbZtNWyvPzcaOzbDDngqmhubmWTQONxpEvpnY3UQAJt7LOult9gEPCaMF/9Qf5UxB8dqKkKg1IytKfkpcGloSOodDGW06XroKkIML9Dnbw== cred@box"
+  public_key = "ENTER_PUBLIC_KEY_HERE"
 
 }
 
@@ -177,8 +176,7 @@ resource "aws_security_group" "bastian_sg" {
 
 #--Jump Machine
 resource "aws_instance" "jump" {
-  #ami = "ami-0b898040803850657"
-  ami                         = "ami-02eac2c0129f6376b"
+  ami                         = "Enter_AMI"
   instance_type               = "t2.micro"
   key_name                    = aws_key_pair.deployer.key_name
   security_groups             = ["${aws_security_group.bastian_sg.name}"]
@@ -210,8 +208,7 @@ resource "aws_instance" "jump" {
 
 #--Dev Machine
 resource "aws_instance" "dev" {
-  #ami = "ami-0b898040803850657"
-  ami             = "ami-02eac2c0129f6376b"
+  ami             = "Enter_AMI"
   instance_type   = "t2.micro"
   key_name        = aws_key_pair.deployer.key_name
   security_groups = [aws_security_group.employee_sg.name]
@@ -224,9 +221,7 @@ resource "aws_instance" "dev" {
 
 #--Prod Machine
 resource "aws_instance" "prod" {
-  #ami = "ami-0b898040803850657"
-  ami = "ami-02eac2c0129f6376b"
-
+  ami             = "Enter_AMI"
   instance_type   = "t2.micro"
   key_name        = aws_key_pair.deployer.key_name
   security_groups = [aws_security_group.customer_sg.name]
@@ -240,8 +235,7 @@ resource "aws_instance" "prod" {
 
 #--Jenkins Machine
 resource "aws_instance" "jenkins" {
-  #ami = "ami-0b898040803850657"
-  ami             = "ami-02eac2c0129f6376b"
+  ami             = "Enter_AMI"
   instance_type   = "t2.micro"
   key_name        = aws_key_pair.deployer.key_name
   security_groups = [aws_security_group.employee_sg.name]
@@ -252,7 +246,7 @@ resource "aws_instance" "jenkins" {
 
 }
 
-
+#Using Ansible to write content to ssh.cfg
 
 resource "local_file" "ansible_resource" {
   content = <<EOF
@@ -274,6 +268,7 @@ EOF
 
 }
 
+#Create ansible inventory
 resource "local_file" "ansible_inventory" {
   content = <<EOF
 [local]
