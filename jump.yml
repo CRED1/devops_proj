@@ -1,0 +1,6 @@
+---
+- name: Configure Jump Box
+  hosts: jump
+  become: yes
+  roles: 
+    - jump

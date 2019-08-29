@@ -1,0 +1,4 @@
+--- 
+java_env_file: /etc/profile.d/java.sh
+java_home_parent_directory: /usr/lib/jvm
+java_version: "1.8.0.191"

@@ -1,0 +1,8 @@
+--- 
+- 
+  become: true
+  gather_facts: false
+  hosts: devops
+  name: "Configure Apache Server"
+  roles: 
+    - httpd

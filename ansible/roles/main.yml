@@ -1,0 +1,19 @@
+- name: Install Apache
+  import_tasks: devops.yml
+  #when: ansible_facts['os_family']| lower == 'httpd'
+
+#- name: Install Terraform
+ # import_tasks: jenkins.yaml
+  #when: ansible_facts['os_family']| lower == 'httpd'
+
+- name: Install Jenkins
+  import_tasks: jenkins.yml
+
+
+
+
+
+
+
+
+
