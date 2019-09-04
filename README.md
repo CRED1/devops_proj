@@ -1,7 +1,7 @@
 # devops_proj
-This project is intended automate the provisioning, configuring and deploying of simple HTMl web application using Terraform, Ansible and Jenkins. 
+This project is intended to automate the provisioning, configuring and deploying of simple HTML web application using Terraform, Ansible and Jenkins. 
 
-In this project four ec2 instances will be provisioned with terreform. 
+In this project four ec2 instances will be provisioned using terreform. 
 
 
 
@@ -57,4 +57,4 @@ Jenkins # update your local machine 1. sudo yum update
 
 Git #Install git if not already install 1. sudo yum install git
 
-Deployment 1. A simple HTMl web app will be push to Github which will later be integrated and deploy with Jenkins. See below for more instruction.
+Deployment 1. A simple HTML web app will be push to Github which will later be integrated and deploy with Jenkins. See below for more instruction.
